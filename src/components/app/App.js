@@ -144,13 +144,15 @@ class App extends Component {
 }
 const mapStateToProps = (state) => {
   console.log("state", state);
-  const { items, filter } = state.contacts;
+  const getfilteredContacts = contactSelectors.getContactsFiltered(state);
+  // const { items, filter } = state.contacts;
 
-  const getfilteredContacts = items.filter((contact) =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
+  // const getfilteredContacts = items.filter((contact) =>
+  //   contact.name.toLowerCase().includes(filter.toLowerCase())
+  //)
   return {
     filteredContacts: getfilteredContacts,
+    // contactSelectors.getContactsFiltered(state),
     IsLoadingContacts: contactSelectors.getLoading(state),
     filter: contactSelectors.getFilter(state),
     contacts: state.contacts.items,
